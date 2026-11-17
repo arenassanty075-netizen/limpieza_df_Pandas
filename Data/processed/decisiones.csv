@@ -1,0 +1,20 @@
+paso,columna,accion,filas_afectadas,justificacion
+3,asistencia_pct,Convertir a número,10150,Se quita el símbolo % y se convierten los guiones en nulos.
+3,horas_trabajo_semana,Convertir a número,10150,Se convierten los guiones en nulos porque representan datos faltantes.
+3,distancia_km,Convertir a número y reemplazar 999 por nulo,152,"El código 999 representa un dato faltante, no una distancia real."
+4,programa,Unificar variantes de escritura,260,"Se unifican espacios, mayúsculas, tildes y abreviaturas conocidas con los valores de VALIDOS; se conservan los nulos."
+4,jornada,Unificar variantes de escritura,485,"Se unifican espacios, mayúsculas, tildes y abreviaturas conocidas con los valores de VALIDOS; se conservan los nulos."
+4,genero,Unificar variantes de escritura,559,"Se unifican espacios, mayúsculas, tildes y abreviaturas conocidas con los valores de VALIDOS; se conservan los nulos."
+4,ciudad_procedencia,Unificar variantes de escritura,542,"Se unifican espacios, mayúsculas, tildes y abreviaturas conocidas con los valores de VALIDOS; se conservan los nulos."
+5,fecha_matricula,Unificar formatos de fecha,3052,Se convierten ambos formatos a tipo fecha y se unen los resultados con fillna.
+6,Todas las columnas,Eliminar filas duplicadas,150,"Se eliminan repeticiones exactas, incluido id_estudiante, conservando la primera aparición."
+7,promedio_acumulado,Conservar valores nulos,298,No se imputan notas para evitar alterar su distribución; se conservan los estudiantes para otros análisis.
+7,ciudad_procedencia,Reemplazar nulos por Sin dato,100,Se conserva al estudiante sin inventar su ciudad de procedencia.
+7,tipo_colegio,Reemplazar nulos por Sin dato,150,Se conserva al estudiante sin asumir si su colegio era público o privado.
+7,motivo_retiro,Conservar nulos porque no aplica,6764,Los nulos corresponden a estudiantes activos o graduados; todos los desertores tienen motivo registrado.
+8,promedio_acumulado,Reemplazar valores fuera de escala por nulos,15,La escala válida es de 0 a 5; se desconoce la nota correcta y no se inventa un reemplazo.
+8,edad,Reemplazar edades fuera del rango por nulos,12,Se usa el rango de 15 a 60 definido en el taller; se desconoce la edad correcta.
+8,horas_trabajo_semana,Completar horas faltantes con cero para quienes no trabajan,2781,"Si el estudiante indica que no trabaja, sus horas de trabajo son cero."
+8,horas_trabajo_semana,Reemplazar horas imposibles por la mediana de quienes trabajan,30,"Se convierten las horas mayores a 100 en nulos y se completan con la mediana de quienes trabajan (24 horas), como indica la guía."
+9,desertor,Crear indicador de deserción,10000,Es True si estado es desertor y False si es activo o graduado.
+9,cuartil_asistencia,Agrupar asistencia en cuatro cuartiles,9800,Se crean grupos de tamaño aproximado para comparar la deserción según asistencia; los nulos permanecen sin grupo.
