@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de deserción estudiantil</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            margin: 0;
+            padding: 0;
+        }
+
+        html { scroll-behavior: smooth; }
+        * { box-sizing: border-box; }
+        nav {
+            background: #12263a;
+            color: white;
+            padding: 18px 24px;
+        }
+        .nav-contenido {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .nav-enlaces { display: flex; gap: 18px; flex-wrap: wrap; }
+        nav a { color: #e2e8f0; text-decoration: none; }
+        nav a:hover { text-decoration: underline; }
+        a:focus-visible { outline: 3px solid #38bdf8; outline-offset: 5px; }
+        header { padding: 30px 0 8px; }
+        header p { text-align: center; line-height: 1.6; }
+        .resumen {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .tarjeta {
+            background: white;
+            border: 1px solid #dbe4ee;
+            border-top: 4px solid #087f8c;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .tarjeta dt { color: #475569; font-size: 14px; margin-bottom: 12px; }
+        .tarjeta dd { margin: 0; font-size: 30px; font-weight: bold; color: #12263a; }
+        .tarjeta dd.programa { font-size: 22px; }
+        .tarjeta small { display: block; color: #475569; margin-top: 10px; line-height: 1.5; }
+        .nota { color: #475569; font-size: 14px; line-height: 1.6; }
+        @media (max-width: 700px) {
+            .resumen { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            h1 { font-size: 26px; }
+        }
+        @media (max-width: 440px) {
+            .resumen { grid-template-columns: 1fr; }
+        }
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px 24px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        section {
+            background: white;
+            padding: 20px;
+            margin: 24px 0;
+            border-radius: 12px;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <nav aria-label="Navegación principal">
+        <div class="nav-contenido">
+            <strong>Retención estudiantil</strong>
+            <div class="nav-enlaces">
+                <a href="#resumen">Resumen</a>
+                <a href="#faltantes">Calidad de datos</a>
+                <a href="#programas">Programas</a>
+                <a href="#asistencia">Asistencia</a>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <header id="resumen">
+        <h1>Análisis de deserción estudiantil</h1>
+        <p>Resultados del taller de calidad de datos con Python y Pandas.</p>
+        </header>
+
+        <dl class="resumen" aria-label="Indicadores del dataset limpio">
+            <div class="tarjeta">
+                <dt>Estudiantes analizados</dt>
+                <dd>10.000</dd>
+                <small>10.000 filas · Un registro por estudiante.</small>
+            </div>
+            <div class="tarjeta">
+                <dt>Columnas del dataset limpio</dt>
+                <dd>25</dd>
+                <small>23 originales y 2 variables creadas.</small>
+            </div>
+            <div class="tarjeta">
+                <dt>Edad más frecuente</dt>
+                <dd>22 años</dd>
+                <small>1.723 estudiantes tienen esta edad.</small>
+            </div>
+            <div class="tarjeta">
+                <dt>Programa con mayor deserción</dt>
+                <dd class="programa">Ingeniería Industrial</dd>
+                <small>40,17 % de deserción · 1.322 estudiantes.</small>
+            </div>
+            <div class="tarjeta">
+                <dt>Programa con mayor promedio académico</dt>
+                <dd class="programa">Enfermería</dd>
+                <small>3,68 sobre 5 · 1.167 estudiantes en total.<br>Promedio calculado con las notas disponibles.</small>
+            </div>
+            <div class="tarjeta">
+                <dt>Edad promedio</dt>
+                <dd>21,73 años</dd>
+                <small>Calculada con 9.988 edades válidas; 12 nulos excluidos.</small>
+            </div>
+        </dl>
+        <p class="nota">Resumen del CSV limpio de este taller con datos sintéticos.
+            Los indicadores son fijos y deben actualizarse si se regenera el análisis con otros datos.
+            El promedio académico no representa una tasa de aprobación.</p>
+
+        <section id="faltantes">
+            <h2>1. Valores faltantes</h2>
+            <p>Permite identificar las columnas con datos vacíos.</p>
+            <img
+                src="Data/processed/graficos/mapa_faltantes.png"
+                alt="Mapa de valores faltantes del dataset original">
+        </section>
+
+        <section id="distribuciones">
+            <h2>2. Antes y después de limpiar</h2>
+            <p>Comparación del promedio acumulado y la edad.</p>
+            <img
+                src="Data/processed/graficos/distribuciones_antes_despues.png"
+                alt="Diagramas de caja antes y después de limpiar">
+        </section>
+
+        <section id="programas">
+            <h2>3. Deserción por programa</h2>
+            <p>Porcentaje de estudiantes que desertaron en cada programa.</p>
+            <img
+                src="Data/processed/graficos/tasa_desercion_por_programa.png"
+                alt="Tasa de deserción por programa académico">
+        </section>
+
+        <section id="asistencia">
+            <h2>4. Deserción por asistencia</h2>
+            <p>
+                Comparación por cuartiles de asistencia.
+                La asociación observada no demuestra causalidad.
+            </p>
+            <img
+                src="Data/processed/graficos/tasa_desercion_por_asistencia.png"
+                alt="Tasa de deserción por cuartil de asistencia">
+        </section>
+    </main>
+</body>
+</html>
